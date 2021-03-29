@@ -1,4 +1,4 @@
-package dev.resource;
+package dev;
 
 import java.util.List;
 
@@ -9,15 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import dev.entity.Student;
+import io.quarkus.panache.common.Sort;
 
 @Path("/students")
 public class StudentResource {
 
     @GET
-   
     public List<Student> students() {
-        return Student.listAll();
+        return Student.listAll(Sort.by("id").descending());
     }
 
     @Transactional
